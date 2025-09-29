@@ -23,7 +23,7 @@ function Home() {
             <section className="primary-teaser">
                 <Teaser item="alaskan-adventures"/>
             </section>
-            <section className="section-one">
+            {/* <section className="section-one">
                 <Title resource="urn:aemconnection:/content/wknd/us/en/tesco-home/jcr:content/root/container/section_one_title" prop="jcr:title" type="text"/>
                 <Adventures category="christmas-party" />
             </section>            
@@ -45,7 +45,7 @@ function Home() {
             <section className="section-four">
                 <Title resource="urn:aemconnection:/content/wknd/us/en/tesco-home/jcr:content/root/container/section_four_title" prop="jcr:title" type="text"/>
                 <Adventures category="healthy" />
-            </section>   
+            </section>    */}
             {/* <section className="about-us">
                 <div className="content">
                     <Title resource="urn:aemconnection:/content/wknd/language-masters/en/universal-editor-container/jcr:content/root/title" prop="jcr:title" type="text"/>

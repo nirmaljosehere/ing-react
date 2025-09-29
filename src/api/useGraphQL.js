@@ -23,11 +23,11 @@ function useGraphQL(path) {
 	useEffect(() => {
 		function makeRequest() {
 			const sdk = new AEMHeadless({
-				serviceURL: getAuthorHost(),
+				serviceURL: getPublishHost(),
 				endpoint: GRAPHQL_ENDPOINT,
 			});
 			const request = sdk.runPersistedQuery.bind(sdk);
-
+			console.log(sdk);
 			request(path, {}, {credentials: "include"})
 				.then(({data, errors}) => {
 					//If there are errors in the response set the error message
@@ -40,6 +40,7 @@ function useGraphQL(path) {
 					}
 				})
 				.catch((error) => {
+					console.log(error);
 					setErrors(error);
 					sessionStorage.removeItem('accessToken');
 				});
