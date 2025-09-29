@@ -42,3 +42,7 @@ bin/
 lib/
 yalc.lock
 .idea/
+
+
+yarn.lock
+package-lock.json
