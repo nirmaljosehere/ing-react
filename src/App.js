@@ -7,6 +7,8 @@ import Home from "./components/Home";
 import AdventureDetail from "./components/AdventureDetail";
 import Articles from "./components/Articles";
 import ArticleDetail from "./components/ArticleDetail";
+import IngArticles from "./components/ingArticles";
+import IngArticleDetail from "./components/ingArticleDetail";
 import About from "./components/About";
 import {getAuthorHost, getProtocol, getService} from "./utils/fetchData";
 import logo from "./images/ing-logo-full.svg";
@@ -85,6 +87,8 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/articles" element={<Articles />} />
               <Route path="/articles/article/:slug" element={<ArticleDetail />} />
+              <Route path="/ing/articles" element={<IngArticles />} />
+              <Route path="/ing/articles/:slug" element={<IngArticleDetail />} />
               <Route path="/aboutus" element={<About />} />
             </Routes>
               {/*<ApolloProvider client={client}>

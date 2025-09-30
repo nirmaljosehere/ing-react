@@ -1,9 +1,15 @@
-const {REACT_APP_DEFAULT_AUTHOR_HOST, REACT_APP_DEFAULT_PUBLISH_HOST} = process.env;
+const {REACT_APP_DEFAULT_AUTHOR_HOST, REACT_APP_DEFAULT_PUBLISH_HOST, REACT_APP_SERVICE_TOKEN} = process.env;
 
 export const fetchData = async (path) => {
-	const host = getAuthorHost();
+	const isLocalhost = window?.location?.host?.startsWith('localhost:3000');
+	const host = isLocalhost ? getAuthorHost() : getPublishHost();
 	const endpointURL = `${host}/${path.split(":/")[1]}.model.json`;
-	const data = await fetch(endpointURL, {credentials: "include"});
+	const options = isLocalhost
+		? (REACT_APP_SERVICE_TOKEN
+			? { headers: { Authorization: `Bearer ${REACT_APP_SERVICE_TOKEN}` } }
+			: { credentials: "include" })
+		: {};
+    const data = await fetch(endpointURL, options);
 	const json = await data.json();
 	return json;
 };

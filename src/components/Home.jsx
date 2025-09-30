@@ -12,6 +12,7 @@ import Title from './base/Title';
 import Text from './base/Text';
 import Teaser from './Teaser';
 import Adventures from './Adventures';
+import IngArticles from './ingArticles';
 import "./Home.scss";
 
 /***
@@ -21,13 +22,13 @@ function Home() {
     return (
         <div className="Home">
             <section className="primary-teaser">
-                <Teaser item="alaskan-adventures"/>
+                <Teaser item="when-your-home-stands-out"/>
             </section>
-            {/* <section className="section-one">
-                <Title resource="urn:aemconnection:/content/wknd/us/en/tesco-home/jcr:content/root/container/section_one_title" prop="jcr:title" type="text"/>
-                <Adventures category="christmas-party" />
+            <section className="section-one">
+                <Title resource="urn:aemconnection:/content/demopotemeaprogram3/us/en/ing/jcr:content/root/container/container/title" prop="jcr:title" type="text"/>
+                <IngArticles category="Lab" />
             </section>            
-            <section className="section-two">
+            {/* <section className="section-two">
                 <Title resource="urn:aemconnection:/content/wknd/us/en/tesco-home/jcr:content/root/container/section_two_title" prop="jcr:title" type="text"/>
                 <Adventures category="healthy" />
             </section>   
@@ -50,7 +51,7 @@ function Home() {
                 <div className="content">
                     <Title resource="urn:aemconnection:/content/wknd/language-masters/en/universal-editor-container/jcr:content/root/title" prop="jcr:title" type="text"/>
                     <Container resource="urn:aemconnection:/content/wknd/language-masters/en/universal-editor-container/jcr:content/root/container" type="container" />
-                </div>
+                </div>d
                 <Link to={`/aboutus${window.location.search}`}>
                     <button className="dark">Read more</button>
                 </Link>

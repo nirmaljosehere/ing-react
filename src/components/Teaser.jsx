@@ -29,7 +29,6 @@ const Teaser = (props) => {
 	//If query response is null then return a loading icon...
 	if (!data) return <Loading/>;
   const article =  getArticle(data);
-  console.log(article);
   if(!article) return <></>
   const { title, _path, featuredImage, synopsis, slug } = article;
   const ctaLabel = article?.ctaLabel || article?.ctaText || article?.buttonLabel || article?.cta?.label || 'Read more';

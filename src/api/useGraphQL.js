@@ -8,10 +8,9 @@ it.
 import {useState, useEffect} from 'react';
 import {getAuthorHost} from "../utils/fetchData";
 import {getPublishHost} from "../utils/fetchData";
-import {getHostUrl} from "../utils/fetchData";
 
 const {AEMHeadless} = require('@adobe/aem-headless-client-js')
-const {GRAPHQL_ENDPOINT} = process.env;
+const {GRAPHQL_ENDPOINT, REACT_APP_SERVICE_TOKEN} = process.env;
 
 /**
  * Custom React Hook to perform a GraphQL query
@@ -22,13 +21,19 @@ function useGraphQL(path) {
 	let [errorMessage, setErrors] = useState(null);
 	useEffect(() => {
 		function makeRequest() {
+			const isLocalhost = window?.location?.host?.startsWith('localhost:3000');
+			const serviceURL = isLocalhost ? getAuthorHost() : getPublishHost();
 			const sdk = new AEMHeadless({
-				serviceURL: getPublishHost(),
+				serviceURL,
 				endpoint: GRAPHQL_ENDPOINT,
 			});
 			const request = sdk.runPersistedQuery.bind(sdk);
-			console.log(sdk);
-			request(path, {}, {credentials: "include"})
+			const requestOptions = isLocalhost
+				? (REACT_APP_SERVICE_TOKEN
+					? { headers: { Authorization: `Bearer ${REACT_APP_SERVICE_TOKEN}` } }
+					: { credentials: "include" })
+				: {};
+			request(path, {}, requestOptions)
 				.then(({data, errors}) => {
 					//If there are errors in the response set the error message
 					if (errors) {
