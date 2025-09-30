@@ -10,6 +10,7 @@ import ArticleDetail from "./components/ArticleDetail";
 import IngArticles from "./components/ingArticles";
 import IngArticleDetail from "./components/ingArticleDetail";
 import About from "./components/About";
+import HelpAccordionContainer from "./components/HelpAccordionContainer";
 import {getAuthorHost, getProtocol, getService} from "./utils/fetchData";
 import logo from "./images/ing-logo-full.svg";
 import "./App.scss";
@@ -89,6 +90,7 @@ function App() {
               <Route path="/articles/article/:slug" element={<ArticleDetail />} />
               <Route path="/ing/articles" element={<IngArticles />} />
               <Route path="/ing/articles/:slug" element={<IngArticleDetail />} />
+              <Route path="/help/:slug" element={<HelpAccordionContainer />} />
               <Route path="/aboutus" element={<About />} />
             </Routes>
               {/*<ApolloProvider client={client}>
