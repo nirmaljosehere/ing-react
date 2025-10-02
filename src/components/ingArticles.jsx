@@ -11,6 +11,7 @@ import useGraphQL from '../api/useGraphQL';
 import Loading from './base/Loading';
 import "./ingArticles.scss";
 import {getPublishHost} from "../utils/fetchData";
+import placeholderCard from '../images/wknd-card.jpeg';
 
 function IngArticleItem(props) {
 	const editorProps = {
@@ -20,16 +21,18 @@ function IngArticleItem(props) {
 		"data-aue-label": props.slug
 	};
 
-	if (!props || !props._path || !props.title || !props.primaryImage) {
+	if (!props || !props._path || !props.title) {
 		return null;
 	}
 
-return (
+	const imageUrl = props.primaryImage?._publishUrl || placeholderCard;
+
+	return (
 		<li className="adventure-item ing-article-card" {...editorProps}>
 			<Link to={`/ing/articles/${props.slug}${window.location.search}`} className="adventure-image-card">
 				<img
 					className="adventure-item-image"
-					src={`${props.primaryImage._publishUrl}`}
+					src={`${imageUrl}`}
 					alt={props.title}
 					data-aue-prop="primaryImage"
 					data-aue-type="media"
