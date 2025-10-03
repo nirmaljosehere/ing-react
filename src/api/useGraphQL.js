@@ -28,12 +28,15 @@ function useGraphQL(path) {
 				endpoint: GRAPHQL_ENDPOINT,
 			});
 			const request = sdk.runPersistedQuery.bind(sdk);
+			// Add cache-busting query param to avoid dispatcher cached responses
+			const cacheParam = `cb=${Date.now()}`;
+			const cacheBustedPath = path.includes('?') ? `${path}&${cacheParam}` : `${path}?${cacheParam}`;
 			const requestOptions = isLocalhost
 				? (REACT_APP_SERVICE_TOKEN
 					? { headers: { Authorization: `Bearer ${REACT_APP_SERVICE_TOKEN}` } }
 					: { credentials: "include" })
 				: {};
-			request(path, {}, requestOptions)
+			request(cacheBustedPath, {}, requestOptions)
 				.then(({data, errors}) => {
 					//If there are errors in the response set the error message
 					if (errors) {
